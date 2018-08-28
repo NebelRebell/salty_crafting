@@ -62,7 +62,8 @@ AddEventHandler('salty_crafting:craftItem', function(ingredients)
 	local xPlayer = ESX.GetPlayerFromId(_source)
 	local item = findRecipe(ingredients)
 	if not item then
-		TriggerClientEvent('esx:showNotification', _source, 'No recipe found with these ingredients')
+		TriggerClientEvent('esx:showNotification', _source, 'No recipe found with these ingredients') --EN
+		-- TriggerClientEvent('esx:showNotification', _source, 'Keine Herstellungsoption für diese Zutaten gefunden!') --DE
 	else
 		if xPlayer ~= nil then
 			if hasAllIngredients(xPlayer.inventory, Config.Recipes[item]) then
@@ -76,9 +77,11 @@ AddEventHandler('salty_crafting:craftItem', function(ingredients)
 				else
 					xPlayer.addInventoryItem(item, 1)
 				end
-				TriggerClientEvent('esx:showNotification', _source, '~y~Item Crafted: ~w~' .. itemLabel(item, xPlayer.inventory))
+				TriggerClientEvent('esx:showNotification', _source, '~y~Item Crafted: ~w~' .. itemLabel(item, xPlayer.inventory)) --EN
+				-- TriggerClientEvent('esx:showNotification', _source, '~y~Artikel hergestellt: ~w~' .. itemLabel(item, xPlayer.inventory)) --DE
 			else
-				TriggerClientEvent('esx:showNotification', _source, 'You do not have all of the ingredients')
+				TriggerClientEvent('esx:showNotification', _source, 'You do not have all of the ingredients') --EN
+				-- TriggerClientEvent('esx:showNotification', _source, 'Dir fehlen noch Zutaten!') --DE
 			end
 		end
 	end
